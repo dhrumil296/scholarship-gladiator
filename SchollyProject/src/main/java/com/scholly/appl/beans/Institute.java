@@ -1,22 +1,18 @@
 package com.scholly.appl.beans;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "INSTITUTE")
 public class Institute {
 
 	@Id
-	private String inst_code;
+	private Long inst_code;
 
 	private String inst_name;
 
@@ -42,14 +38,15 @@ public class Institute {
 
 	private String inst_status;
 
-	@OneToMany(mappedBy = "institute", cascade = CascadeType.ALL)
-	private List<Student> students;
+//	@OneToMany(mappedBy = "institute", cascade = CascadeType.ALL)
+//	@JsonIgnoreProperties("institute")
+//	private List<Student> students;
 
 	public Institute() {
 		super();
 	}
 
-	public Institute(String inst_code, String inst_name, String inst_type, String board_name, String inst_pwd,
+	public Institute(Long inst_code, String inst_name, String inst_type, String board_name, String inst_pwd,
 			String proof_of_existence, String affiliated_to, String inst_state, String inst_district, String inst_addr,
 			String princi_name, String phone_no, String inst_status) {
 		super();
@@ -68,11 +65,11 @@ public class Institute {
 		this.inst_status = inst_status;
 	}
 
-	public String getInst_code() {
+	public Long getInst_code() {
 		return inst_code;
 	}
 
-	public void setInst_code(String inst_code) {
+	public void setInst_code(Long inst_code) {
 		this.inst_code = inst_code;
 	}
 
@@ -172,13 +169,13 @@ public class Institute {
 		this.inst_status = inst_status;
 	}
 
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
+//	public List<Student> getStudents() {
+//		return students;
+//	}
+//
+//	public void setStudents(List<Student> students) {
+//		this.students = students;
+//	}
 
 	@Override
 	public String toString() {

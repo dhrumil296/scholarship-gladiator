@@ -24,15 +24,21 @@ public class StudentController {
 	private StudentServiceImpl studService;
 
 	// http://localhost:8090/student/register-student
-	@PostMapping("/register-student")
-	public void registerStudent(@RequestBody Student stud, @PathVariable String code) {
-		studService.registerStudent(stud, code);
+	@PostMapping("/add-student")
+	public Boolean registerStudent(@RequestBody Student stud) {
+		return studService.registerStudent(stud);
 	}
 
 	// http://localhost:8090/student/login-student
 	@PostMapping("/login-student")
-	public Student loginStudent(@RequestBody Student student) {
+	public Boolean loginStudent(@RequestBody Student student) {
 		return studService.loginStudent(student.getStud_id(), student.getStud_pwd());
+	}
+	
+	@GetMapping("/get-details/{id}")
+	public Student studentDetails(@PathVariable(value="id") Long stud_id) {
+		System.out.println(studService.getStudentDets(stud_id));
+		return studService.getStudentDets(stud_id);
 	}
 
 }

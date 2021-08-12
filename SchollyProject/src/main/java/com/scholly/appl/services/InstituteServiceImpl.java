@@ -1,5 +1,7 @@
 package com.scholly.appl.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,28 +21,33 @@ public class InstituteServiceImpl implements InstituteService{
 	}
 
 	@Override
-	public Institute loginInstitute(String inst_code, String pwd) {
+	public Boolean loginInstitute(Long inst_code, String pwd) {
 		return instDao.loginInstitute(inst_code, pwd);
 	}
 
 	@Override
-	public Institute instituteShowDetails(String inst_code) {
-		return instDao.instituteShowDetails(inst_code);
+	public Institute getInstituteDets(Long inst_code) {
+		return instDao.getInstituteDets(inst_code);
 	}
 
 	@Override
-	public String updatePassword(String inst_code, String old_pwd, String new_pwd) throws InstException {
+	public String updatePassword(Long inst_code, String old_pwd, String new_pwd) throws InstException {
 		return instDao.updatePassword(inst_code, old_pwd, new_pwd);
 	}
 
 	@Override
-	public String updatePrincipalName(String inst_code, String new_princi_name) {
+	public String updatePrincipalName(Long inst_code, String new_princi_name) {
 		return instDao.updatePrincipalName(inst_code, new_princi_name);
 	}
 
 	@Override
-	public String updatePhoneNo(String inst_code, String new_phone_no) {
+	public String updatePhoneNo(Long inst_code, String new_phone_no) {
 		return instDao.updatePhoneNo(inst_code, new_phone_no);
+	}
+
+	@Override
+	public List<Institute> displayAllInstitutes() {
+		return instDao.displayAllInstitutes();
 	}
 	
 }

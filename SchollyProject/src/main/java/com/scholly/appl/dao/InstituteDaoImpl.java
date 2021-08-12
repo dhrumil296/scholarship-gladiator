@@ -1,5 +1,7 @@
 package com.scholly.appl.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -27,29 +29,33 @@ public class InstituteDaoImpl implements InstituteDao {
 
 	@Override
 	@Transactional
-	public Institute loginInstitute(String inst_code, String pwd) {
+	public Boolean loginInstitute(Long inst_code, String pwd) {
 
 		String sql = "From Institute where inst_code= :inst_code and inst_pwd= :pwd";
 		TypedQuery<Institute> tq = em.createQuery(sql, Institute.class);
 		tq.setParameter("inst_code", inst_code);
 		tq.setParameter("pwd", pwd);
 		Institute inst = tq.getSingleResult();
+		if(inst==null)
+			return false;
+		return true;
+	}
+
+	@Override
+	@Transactional
+	public Institute getInstituteDets(Long inst_code) {
+//		String sql = "From Institute where inst_code= :inst_code";
+//		TypedQuery<Institute> tq = em.createQuery(sql, Institute.class);
+//		tq.setParameter("inst_code", inst_code);
+//		Institute inst = tq.getSingleResult();
+//		return inst;
+		Institute inst = em.find(Institute.class, inst_code);
 		return inst;
 	}
 
 	@Override
 	@Transactional
-	public Institute instituteShowDetails(String inst_code) {
-		String sql = "From Institute where inst_code= :inst_code";
-		TypedQuery<Institute> tq = em.createQuery(sql, Institute.class);
-		tq.setParameter("inst_code", inst_code);
-		Institute inst = tq.getSingleResult();
-		return inst;
-	}
-
-	@Override
-	@Transactional
-	public String updatePassword(String inst_code, String old_pwd, String new_pwd) throws InstException {
+	public String updatePassword(Long inst_code, String old_pwd, String new_pwd) throws InstException {
 
 		Institute inst = em.find(Institute.class, inst_code);
 		
@@ -68,15 +74,23 @@ public class InstituteDaoImpl implements InstituteDao {
 	}
 
 	@Override
-	public String updatePrincipalName(String inst_code, String new_princi_name) {
+	public String updatePrincipalName(Long inst_code, String new_princi_name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String updatePhoneNo(String inst_code, String new_phone_no) {
+	public String updatePhoneNo(Long inst_code, String new_phone_no) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Institute> displayAllInstitutes() {
+		String sql = "From Institute";
+		TypedQuery qry = em.createQuery(sql, Institute.class);
+		List<Institute> instList = qry.getResultList();
+		return instList;
 	}
 
 }

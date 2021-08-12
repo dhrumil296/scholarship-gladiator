@@ -1,5 +1,5 @@
 create table INSTITUTE(
-inst_code varchar2(50), //pk
+inst_code number(10), 
 inst_name varchar2(50),
 inst_type varchar2(50),
 board_name varchar2(50),
@@ -16,9 +16,9 @@ inst_status varchar2(5)
 
 
 create table Student(
-stud_id varchar2(50), //pk	
+stud_id number(12), 	
 stud_name varchar2(50),
-dob	varchar2(20),
+dob varchar2(20),
 gender varchar2(5),
 mob_no varchar2(11),	
 stud_email_id varchar2(50),
@@ -27,30 +27,13 @@ state_of_domicile varchar2(30),
 district varchar2(30),
 bank_acc_no varchar2(14),	
 bank_ifsc varchar2(10),	
-inst_code varchar2(50) //fk
+inst_code number(10)
 );
 
-alter table student add constraint pk_02 primary key(stud_id) 
+alter table student add constraint STUDENT_PK PRIMARY KEY (STUD_ID)
 
-alter table institute add constraint pk_03 primary key(inst_code) 
+alter table institute add constraint INSTITUTE_PK PRIMARY KEY (INST_CODE)
 
-alter table student add constraint fk_02 foreign key (inst_code) references Institute(inst_code) 
-
-
-create table student_login(
-stud_id varchar2(50),
-stud_pwd varchar2(50)
-);
-
-alter table student_login add constraint fk1 foreign key (stud_id) references Student(stud_id) on delete cascade
-
+alter table student add constraint STUDENT_INST_FK FOREIGN KEY (INST_CODE) REFERENCES INSTITUTE(INST_CODE) ON DELETE CASCADE
 
 select * from student
-
-select * from student_login
-
-insert into student_login values('102','Loki');
-insert into student_login values('103','Thor');
-insert into student_login values('104','Lisa');
-insert into student_login values('105','Jennie');
-insert into student_login values('2','Vijay');
