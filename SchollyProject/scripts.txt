@@ -1,17 +1,14 @@
 create table INSTITUTE(
-inst_code number(10), 
+inst_code int, 
 inst_name varchar2(50),
 inst_type varchar2(50),
 board_name varchar2(50),
 inst_pwd varchar2(50),
-proof_of_existence varchar2(50),
-affiliated_to varchar2(50),
+proof_of_existence varchar2(500),
 inst_state varchar2(50),
 inst_district varchar2(50),
 inst_addr varchar2(50),
-princi_name varchar2(50),
-phone_no varchar2(20),
-inst_status varchar2(5)
+phone_no int
 );
 
 
@@ -19,15 +16,15 @@ create table Student(
 stud_id number(12), 	
 stud_name varchar2(50),
 dob varchar2(20),
-gender varchar2(5),
+gender varchar(1),
 mob_no varchar2(11),	
 stud_email_id varchar2(50),
 stud_pwd varchar2(50),
 state_of_domicile varchar2(30),	
 district varchar2(30),
-bank_acc_no varchar2(14),	
-bank_ifsc varchar2(10),	
-inst_code number(10)
+bank_acc_no int,	
+bank_ifsc varchar2(20),	
+inst_code int
 );
 
 alter table student add constraint STUDENT_PK PRIMARY KEY (STUD_ID)
@@ -37,45 +34,132 @@ alter table institute add constraint INSTITUTE_PK PRIMARY KEY (INST_CODE)
 alter table student add constraint STUDENT_INST_FK FOREIGN KEY (INST_CODE) REFERENCES INSTITUTE(INST_CODE) ON DELETE CASCADE
 
 create table SCHEME(			
-SCHEME_ID number(12),
+SCHEME_ID int,
 SCHEME_NAME varchar2(50),
-SCHEME_DESCR varchar2(200),
+SCHEME_DESC varchar2(300),
 SCHEME_AMT number(7,2),
+APPLICABLE_GENDER varchar(1),
+SSC_PERCENTAGE number(5,2),
+HSC_PERCENTAGE number(5,2),
 CONSTRAINT SCHEME_PK PRIMARY KEY (SCHEME_ID)
 );
 
-insert into SCHEME values (5000, 'Post Matric Scholarship', 'abcd', 10000);
-insert into SCHEME values (5001, 'National Merit Scholarship', 'efg', 20000);
-insert into SCHEME values (5002, 'Pragati Scholarship', 'higk', 30000);
+insert into SCHEME values (5000, 'Post Matric Scholarship', 'abcd', 10000, 'U', 0,0);
+insert into SCHEME values (5001, 'National Merit Scholarship', 'efg', 20000, 'U', 0, 0);
+insert into SCHEME values (5002, 'Pragati Scholarship', 'higk', 30000, 'F', 0, 0);
 
-create table SCHOLARSHIP_FORM(	
-SCH_FORM_ID SCHOLARSHIPFORM_PK PRIMARY KEY,	
-FORM_ID	number CONSTRAINT SCHOLARSHIPFORM_FORM_FK REFERENCES FORM(FORM_ID) ON DELETE CASCADE,
-STUDENT_ID number CONSTRAINT SCHOLARSHIPFORM_STUDENT_FK REFERENCES STUDENT(STUD_ID) ON DELETE CASCADE,
-SCHEME_ID number CONSTRAINT SCHOLARSHIPFORM_SCHEME REFERENCES SCHEME(SCHEME_ID) ON DELETE CASCADE,
-FORM_STATUS int DEFAULT 0
-);
-
-create table FORM(										
-FORM_ID number(12) FORM_PK PRIMARY KEY,
-STUDENT_ID number CONSTRAINT FORM_STUDENT_FK REFERENCES STUDENT(STUD_ID) ON DELETE CASCADE,
-SCHEME_ID number CONSTRAINT FORM_SCHEME REFERENCES SCHEME(SCHEME_ID) ON DELETE CASCADE,
-RELIGION varchar2(15),
+create table FORM(
+FORM_ID int,
+STUD_ID number(12),
+SCHEME_ID int,
 COMMUNITY varchar2(30),
-FATHER_NAME varchar2(20),
-MOTHER_NAME varchar2(20),
+GUARDIAN_NAME varchar2(20),
 FAMILY_INCOME number(10,2),
-ISDISABILITY int DEFAULT 0,
-DISABILITY_TYPE varchar2(20),
-PROF_FATHER varchar2(25),
-PROF_MOTHER varchar2(25),
-PASSYR_10 number(4),
-PERC_10 number(5,2),
-PASSYR_12 number(4),
-PERC_12 number(5,2),
+IS_DISABLED varchar2(3),
+DISABILITY_TYPE varchar2(30),
+SSC_PERCENTAGE number(5,2),
+HSC_PERCENTAGE number(5,2),
 INST_NAME varchar2(35),
-CURR_COURSE varchar2(25),
-START_DATE date,
-UNIV_NAME varchar2(35),
-TOTAL_FEES number(10,2)
+CURRENT_COURSE varchar2(25),
+START_DATE varchar2(10),
+TOTAL_FEES number(10,2),
+BANK_PASSBOOK varchar2(500),
+AADHAR_CARD varchar2(500),
+SSC_MARKSHEET varchar2(500),
+HSC_MARKSHEET varchar2(500),
+STATE varchar2(30),
+DISTRICT varchar2(30),
+CITY varchar2(30),
+PIN_CODE int,
+ADDRESS varchar2(50),
+FORM_SUBMISSION_YEAR int,
+FORM_STATUS varchar2(20)
 );
+
+alter table Form add constraint FORM_PK PRIMARY KEY (FORM_ID);
+alter table Form add constraint FORM_STUDENT_FK FOREIGN KEY (STUD_ID) REFERENCES STUDENT(STUD_ID) ON DELETE CASCADE;
+alter table Form add constraint FORM_SCHEME_FK FOREIGN KEY (SCHEME_ID) REFERENCES SCHEME(SCHEME_ID) ON DELETE CASCADE;
+
+create table State(
+state_id int,
+state_name varchar2(30)
+);
+
+alter table State add constraint STATE_PK PRIMARY KEY (STATE_ID);
+
+insert into State values(1,'Andhra Pradesh');
+insert into State values(2,'Gujarat');
+insert into State values(3,'Maharashtra');
+insert into State values(4,'Uttar Pradesh');
+
+create table District(
+district_id int,
+state_id int,
+district_name varchar2(20)
+);
+
+alter table District add constraint DISTRICT_PK PRIMARY KEY (DISTRICT_ID);
+alter table District add constraint DISTRICT_STATE_FK FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE CASCADE;
+
+insert into District values(1,1,'Visakhapatnam');
+insert into District values(2,1,'Krishna');
+insert into District values(3,1,'Guntur');
+insert into District values(4,2,'Ahmadabad');
+insert into District values(5,2,'Surat');
+insert into District values(6,2,'Vadodara');
+insert into District values(7,3,'Thane');
+insert into District values(8,3,'Mumbai Suburban');
+insert into District values(9,3,'Nagpur');
+insert into District values(10,4,'Allahabad');
+insert into District values(11,4,'Lucknow');
+insert into District values(12,4,'Kanpur');
+
+create table City(
+city_id int,
+district_id int,
+state_id int,
+city_name varchar2(20)
+);
+
+alter table CITY add constraint CITY_PK PRIMARY KEY (CITY_ID);
+alter table CITY add constraint CITY_DISTRICT_FK FOREIGN KEY (DISTRICT_ID) REFERENCES DISTRICT(DISTRICT_ID) ON DELETE CASCADE;
+alter table CITY add constraint CITY_STATE_FK FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE CASCADE;
+
+insert into City values(1,1,1,'Anakapalle');
+insert into City values(2,1,1,'Bheemunipatnam');
+insert into City values(3,1,1,'Visakhapatnam');
+insert into City values(4,2,1,'Gudivada');
+insert into City values(5,2,1,'Machilipatnam');
+insert into City values(6,2,1,'Vijayawada');
+insert into City values(7,3,1,'Chilakaluripet');
+insert into City values(8,3,1,'Guntur');
+insert into City values(9,3,1,'Tenali');
+
+insert into City values(10,1,2,'Ahmadabad');
+insert into City values(11,1,2,'Dholka');
+insert into City values(12,1,2,'Sanand');
+insert into City values(13,2,2,'Bardoli');
+insert into City values(14,2,2,'Kansad');
+insert into City values(15,2,2,'Surat');
+insert into City values(16,3,2,'Dabhoi');
+insert into City values(17,3,2,'Padra');
+insert into City values(18,3,2,'Vadodara');
+insert into City values(19,1,3,'Kalyan-Dombivli');
+insert into City values(20,1,3,'Mira-Bhayandar');
+insert into City values(21,1,3,'Thane');
+insert into City values(22,2,3,'Andheri');
+insert into City values(23,2,3,'Borivali');
+insert into City values(24,2,3,'Vasai');
+insert into City values(25,3,3,'Kamptee');
+insert into City values(26,3,3,'Katol');
+insert into City values(27,3,3,'Nagpur');
+
+insert into City values(28,1,4,'Allahabad Cantonment');
+insert into City values(29,1,4,'Handia');
+insert into City values(30,1,4,'Sirsa');
+insert into City values(31,2,4,'Kakori');
+insert into City values(32,2,4,'Lucknow');
+insert into City values(33,2,4,'Sarsawan');
+insert into City values(34,3,4,'Bilhaur');
+insert into City values(35,3,4,'Kanpur');
+insert into City values(36,3,4,'Pukhrayan');

@@ -1,11 +1,8 @@
 package com.scholly.appl.beans;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "INSTITUTE")
@@ -24,31 +21,20 @@ public class Institute {
 
 	private String proof_of_existence;
 
-	private String affiliated_to;
-
 	private String inst_state;
 
 	private String inst_district;
 
 	private String inst_addr;
 
-	private String princi_name;
-
 	private String phone_no;
-
-	private String inst_status;
-
-//	@OneToMany(mappedBy = "institute", cascade = CascadeType.ALL)
-//	@JsonIgnoreProperties("institute")
-//	private List<Student> students;
 
 	public Institute() {
 		super();
 	}
 
 	public Institute(Long inst_code, String inst_name, String inst_type, String board_name, String inst_pwd,
-			String proof_of_existence, String affiliated_to, String inst_state, String inst_district, String inst_addr,
-			String princi_name, String phone_no, String inst_status) {
+			String proof_of_existence, String inst_state, String inst_district, String inst_addr, String phone_no) {
 		super();
 		this.inst_code = inst_code;
 		this.inst_name = inst_name;
@@ -56,13 +42,10 @@ public class Institute {
 		this.board_name = board_name;
 		this.inst_pwd = inst_pwd;
 		this.proof_of_existence = proof_of_existence;
-		this.affiliated_to = affiliated_to;
 		this.inst_state = inst_state;
 		this.inst_district = inst_district;
 		this.inst_addr = inst_addr;
-		this.princi_name = princi_name;
 		this.phone_no = phone_no;
-		this.inst_status = inst_status;
 	}
 
 	public Long getInst_code() {
@@ -113,14 +96,6 @@ public class Institute {
 		this.proof_of_existence = proof_of_existence;
 	}
 
-	public String getAffiliated_to() {
-		return affiliated_to;
-	}
-
-	public void setAffiliated_to(String affiliated_to) {
-		this.affiliated_to = affiliated_to;
-	}
-
 	public String getInst_state() {
 		return inst_state;
 	}
@@ -145,14 +120,6 @@ public class Institute {
 		this.inst_addr = inst_addr;
 	}
 
-	public String getPrinci_name() {
-		return princi_name;
-	}
-
-	public void setPrinci_name(String princi_name) {
-		this.princi_name = princi_name;
-	}
-
 	public String getPhone_no() {
 		return phone_no;
 	}
@@ -161,29 +128,12 @@ public class Institute {
 		this.phone_no = phone_no;
 	}
 
-	public String getInst_status() {
-		return inst_status;
-	}
-
-	public void setInst_status(String inst_status) {
-		this.inst_status = inst_status;
-	}
-
-//	public List<Student> getStudents() {
-//		return students;
-//	}
-//
-//	public void setStudents(List<Student> students) {
-//		this.students = students;
-//	}
-
 	@Override
 	public String toString() {
 		return "Institute [inst_code=" + inst_code + ", inst_name=" + inst_name + ", inst_type=" + inst_type
 				+ ", board_name=" + board_name + ", inst_pwd=" + inst_pwd + ", proof_of_existence=" + proof_of_existence
-				+ ", affiliated_to=" + affiliated_to + ", inst_state=" + inst_state + ", inst_district=" + inst_district
-				+ ", inst_addr=" + inst_addr + ", princi_name=" + princi_name + ", phone_no=" + phone_no
-				+ ", inst_status=" + inst_status + "]";
+				+ ", inst_state=" + inst_state + ", inst_district=" + inst_district + ", inst_addr=" + inst_addr
+				+ ", phone_no=" + phone_no + "]";
 	}
 
 }
