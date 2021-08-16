@@ -24,7 +24,7 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Autowired
 	InstituteService instService;
-	
+
 	@Override
 	@Transactional
 	public Boolean registerStudent(Student stud) {
@@ -34,49 +34,49 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	@Transactional
-	public Boolean loginStudent(Long stud_id, String stud_pwd) {
-		System.out.println(stud_id + " " + stud_pwd);
-		String sql = "From Student where stud_id= :stud_id and stud_pwd= :stud_pwd";
+	public Boolean loginStudent(Long studId, String studPwd) {
+		System.out.println(studId + " " + studPwd);
+		String sql = "From Student where studId= :studId and studPwd= :studPwd";
 		TypedQuery<Student> tq = em.createQuery(sql, Student.class);
-		tq.setParameter("stud_id", stud_id);
-		tq.setParameter("stud_pwd", stud_pwd);
+		tq.setParameter("studId", studId);
+		tq.setParameter("studPwd", studPwd);
 		Student stud = tq.getSingleResult();
-		if(stud==null)
+		if (stud == null)
 			return false;
 		return true;
 	}
 
 	@Override
 	@Transactional
-	public Student getStudentDets(Long stud_id) {
-		String sql = "From Student where stud_id= :stud_id";
+	public Student getStudentDets(Long studId) {
+		String sql = "From Student where studId= :studId";
 		TypedQuery<Student> tq = em.createQuery(sql, Student.class);
-		tq.setParameter("stud_id", stud_id);
+		tq.setParameter("studId", studId);
 		Student stud = tq.getSingleResult();
 		return stud;
 	}
 
 	@Override
 	@Transactional
-	public String updatePassword(Long stud_id, String old_pwd, String new_pwd) throws StudException {
+	public String updatePassword(Long studId, String oldPwd, String newPwd) throws StudException {
 
-		Student stud = em.find(Student.class, stud_id);
-		if (!old_pwd.equals(stud.getStud_id()))
+		Student stud = em.find(Student.class, studId);
+		if (!oldPwd.equals(stud.getStudId()))
 			return "Password mismatch";
 		else {
-			String sql = "update Student set stud_pwd= :new_pwd where stud_id = :stud_id";
+			String sql = "update Student set studPwd= :newPwd where studId = :studId";
 			Query qry = em.createQuery(sql);
-			qry.setParameter("stud_id", stud_id);
-			qry.setParameter("new_pwd", new_pwd);
+			qry.setParameter("studId", studId);
+			qry.setParameter("newPwd", newPwd);
 			int status = qry.executeUpdate();
 			System.out.println(status);
 		}
 		return "Password Updated";
 	}
-	
+
 	@Override
 	@Transactional
-	public List<Student> getAllStudents(){
+	public List<Student> getAllStudents() {
 		String sql = "From Student";
 		TypedQuery<Student> tq = em.createQuery(sql, Student.class);
 		List<Student> studList = tq.getResultList();

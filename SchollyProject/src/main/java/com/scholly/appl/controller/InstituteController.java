@@ -29,16 +29,16 @@ public class InstituteController {
 		instService.registerInstitute(inst);
 	}
 	
-	// http://localhost:8090/institute-dets/{id}
-	@GetMapping("/institute-dets/{id}")
-	public Institute getInstituteDets(@PathVariable(value="id") Long inst_code) {
-		return instService.getInstituteDets(inst_code);
+	// http://localhost:8090/institute/id}
+	@GetMapping("/{id}")
+	public Institute getInstituteDets(@PathVariable(value="id") Long instCode) {
+		return instService.getInstituteDets(instCode);
 	}
 	
-	// http://localhost:8090/student/login-student
+	// http://localhost:8090/institute/login-institute
 		@PostMapping("/login-institute")
 		public Boolean loginInstitute(@RequestBody Institute inst) {
-			return instService.loginInstitute(inst.getInst_code(), inst.getInst_pwd());
+			return instService.loginInstitute(inst.getInstCode(), inst.getInstPwd());
 		}
 		
 		@GetMapping("/institutes")

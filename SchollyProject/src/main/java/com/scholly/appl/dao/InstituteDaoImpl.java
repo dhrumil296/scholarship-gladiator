@@ -22,51 +22,43 @@ public class InstituteDaoImpl implements InstituteDao {
 	@Override
 	@Transactional
 	public String registerInstitute(Institute inst) {
-		
 		em.persist(inst);
 		return "Successfully added";
 	}
 
 	@Override
-	@Transactional
-	public Boolean loginInstitute(Long inst_code, String pwd) {
+	public Boolean loginInstitute(Long instCode, String pwd) {
 
-		String sql = "From Institute where inst_code= :inst_code and inst_pwd= :pwd";
+		String sql = "From Institute where instCode= :instCode and instPwd= :pwd";
 		TypedQuery<Institute> tq = em.createQuery(sql, Institute.class);
-		tq.setParameter("inst_code", inst_code);
+		tq.setParameter("instCode", instCode);
 		tq.setParameter("pwd", pwd);
 		Institute inst = tq.getSingleResult();
-		if(inst==null)
+		if (inst == null)
 			return false;
 		return true;
 	}
 
 	@Override
 	@Transactional
-	public Institute getInstituteDets(Long inst_code) {
-//		String sql = "From Institute where inst_code= :inst_code";
-//		TypedQuery<Institute> tq = em.createQuery(sql, Institute.class);
-//		tq.setParameter("inst_code", inst_code);
-//		Institute inst = tq.getSingleResult();
-//		return inst;
-		Institute inst = em.find(Institute.class, inst_code);
+	public Institute getInstituteDets(Long instCode) {
+		Institute inst = em.find(Institute.class, instCode);
 		return inst;
 	}
 
 	@Override
 	@Transactional
-	public String updatePassword(Long inst_code, String old_pwd, String new_pwd) throws InstException {
+	public String updatePassword(Long instCode, String oldPwd, String newPwd) throws InstException {
 
-		Institute inst = em.find(Institute.class, inst_code);
-		
-		if (!old_pwd.equals(inst.getInst_pwd()))
-			//throw new InstException("Password mismatch");
+		Institute inst = em.find(Institute.class, instCode);
+
+		if (!oldPwd.equals(inst.getInstPwd()))
 			return "Password mismatch";
 		else {
-			String sql = "update Institute set inst_pwd= :new_pwd where inst_code = :inst_code";
+			String sql = "update Institute set instPwd= :newPwd where instCode = :instCode";
 			Query qry = em.createQuery(sql);
-			qry.setParameter("inst_code", inst_code);
-			qry.setParameter("new_pwd", new_pwd);
+			qry.setParameter("instCode", instCode);
+			qry.setParameter("newPwd", newPwd);
 			int status = qry.executeUpdate();
 			System.out.println(status);
 		}
@@ -74,13 +66,13 @@ public class InstituteDaoImpl implements InstituteDao {
 	}
 
 	@Override
-	public String updatePrincipalName(Long inst_code, String new_princi_name) {
+	public String updatePrincipalName(Long instCode, String newPrinciName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String updatePhoneNo(Long inst_code, String new_phone_no) {
+	public String updatePhoneNo(Long instCode, String newPhoneNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -88,7 +80,7 @@ public class InstituteDaoImpl implements InstituteDao {
 	@Override
 	public List<Institute> displayAllInstitutes() {
 		String sql = "From Institute";
-		TypedQuery qry = em.createQuery(sql, Institute.class);
+		TypedQuery<Institute> qry = em.createQuery(sql, Institute.class);
 		List<Institute> instList = qry.getResultList();
 		return instList;
 	}

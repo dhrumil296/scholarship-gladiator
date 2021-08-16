@@ -7,10 +7,10 @@ import com.scholly.appl.exp.InstException;
 
 public interface InstituteDao {
 	public String registerInstitute(Institute inst);
-	public Boolean loginInstitute(Long inst_code, String pwd);
-	public Institute getInstituteDets(Long inst_code);  
-	public String updatePassword(Long inst_code, String old_pwd, String new_pwd) throws InstException;
-	public String updatePrincipalName(Long inst_code, String new_princi_name);
-	public String updatePhoneNo(Long inst_code, String new_phone_no);
+	public Boolean loginInstitute(Long instCode, String pwd);
+	public Institute getInstituteDets(Long instCode);  
+	public String updatePassword(Long instCode, String oldPwd, String newPwd) throws InstException;
+	public String updatePrincipalName(Long instCode, String newPrinciName);
+	public String updatePhoneNo(Long instCode, String newPhoneNo);
 	public List<Institute> displayAllInstitutes();
 }

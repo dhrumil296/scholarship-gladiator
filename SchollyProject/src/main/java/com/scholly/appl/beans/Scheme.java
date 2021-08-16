@@ -26,17 +26,17 @@ public class Scheme {
 	private String applicableGender;
 
 	@Column(name = "SSC_PERCENTAGE")
-	private String sscPercentage;
+	private double sscPercentage;
 
 	@Column(name = "HSC_PERCENTAGE")
-	private String hscPercentage;
+	private double hscPercentage;
 
 	public Scheme() {
 		super();
 	}
 
 	public Scheme(int schemeId, String schemeName, String schemeDescription, int schemeAmount, String applicableGender,
-			String sscPercentage, String hscPercentage) {
+			double sscPercentage, double hscPercentage) {
 		super();
 		this.schemeId = schemeId;
 		this.schemeName = schemeName;
@@ -87,19 +87,19 @@ public class Scheme {
 		this.applicableGender = applicableGender;
 	}
 
-	public String getSscPercentage() {
+	public double getSscPercentage() {
 		return sscPercentage;
 	}
 
-	public void setSscPercentage(String sscPercentage) {
+	public void setSscPercentage(double sscPercentage) {
 		this.sscPercentage = sscPercentage;
 	}
 
-	public String getHscPercentage() {
+	public double getHscPercentage() {
 		return hscPercentage;
 	}
 
-	public void setHscPercentage(String hscPercentage) {
+	public void setHscPercentage(double hscPercentage) {
 		this.hscPercentage = hscPercentage;
 	}
 

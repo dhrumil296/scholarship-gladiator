@@ -1,76 +1,86 @@
 package com.scholly.appl.beans;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "STUDENT")
 public class Student {
 
 	@Id
-	private Long stud_id;
+	@Column(name = "STUD_ID")
+	private Long studId;
 
-	private String stud_name;
+	@Column(name = "STUD_NAME")
+	private String studName;
+
+	@Column(name = "DOB")
 	private String dob;
-	private String gender;
-	private String mob_no;
-	private String stud_email_id;
-	private String stud_pwd;
-	private String state_of_domicile;
-	private String district;
-	private String bank_acc_no;
-	private String bank_ifsc;
-	private Long inst_code;
 
-//	@ManyToOne(cascade = CascadeType.ALL, optional = false)
-//	@JoinColumn(name = "inst_code")
-////	@JsonIgnoreProperties("inst_code")
-//	private Institute institute;
+	@Column(name = "GENDER")
+	private String gender;
+
+	@Column(name = "MOB_NO")
+	private String mobNo;
+
+	@Column(name = "STUD_EMAIL_ID")
+	private String studEmailId;
+
+	@Column(name = "STUD_PWD")
+	private String studPwd;
+
+	@Column(name = "STATE_OF_DOMICILE")
+	private String stateOfDomicile;
+
+	@Column(name = "DISTRICT")
+	private String district;
+
+	@Column(name = "BANK_ACC_NO")
+	private String bankAccNo;
+
+	@Column(name = "BANK_IFSC")
+	private String bankIfsc;
+
+	@Column(name = "INST_CODE")
+	private Long instCode;
 
 	public Student() {
 		super();
 	}
 
-	public Student(Long stud_id, String stud_name, String dob, String gender, String mob_no, String stud_email_id,
-			String stud_pwd, String state_of_domicile, String district, String bank_acc_no, String bank_ifsc,
-			Long inst_code) {
+	public Student(Long studId, String studName, String dob, String gender, String mobNo, String studEmailId,
+			String studPwd, String stateOfDomicile, String district, String bankAccNo, String bankIfsc, Long instCode) {
 		super();
-		this.stud_id = stud_id;
-		this.stud_name = stud_name;
+		this.studId = studId;
+		this.studName = studName;
 		this.dob = dob;
 		this.gender = gender;
-		this.mob_no = mob_no;
-		this.stud_email_id = stud_email_id;
-		this.stud_pwd = stud_pwd;
-		this.state_of_domicile = state_of_domicile;
+		this.mobNo = mobNo;
+		this.studEmailId = studEmailId;
+		this.studPwd = studPwd;
+		this.stateOfDomicile = stateOfDomicile;
 		this.district = district;
-		this.bank_acc_no = bank_acc_no;
-		this.bank_ifsc = bank_ifsc;
-		this.inst_code = inst_code;
+		this.bankAccNo = bankAccNo;
+		this.bankIfsc = bankIfsc;
+		this.instCode = instCode;
 	}
 
-	public Long getStud_id() {
-		return stud_id;
+	public Long getStudId() {
+		return studId;
 	}
 
-	public void setStud_id(Long stud_id) {
-		this.stud_id = stud_id;
+	public void setStudId(Long studId) {
+		this.studId = studId;
 	}
 
-	public String getStud_name() {
-		return stud_name;
+	public String getStudName() {
+		return studName;
 	}
 
-	public void setStud_name(String stud_name) {
-		this.stud_name = stud_name;
+	public void setStudName(String studName) {
+		this.studName = studName;
 	}
 
 	public String getDob() {
@@ -89,36 +99,36 @@ public class Student {
 		this.gender = gender;
 	}
 
-	public String getMob_no() {
-		return mob_no;
+	public String getMobNo() {
+		return mobNo;
 	}
 
-	public void setMob_no(String mob_no) {
-		this.mob_no = mob_no;
+	public void setMobNo(String mobNo) {
+		this.mobNo = mobNo;
 	}
 
-	public String getStud_email_id() {
-		return stud_email_id;
+	public String getStudEmailId() {
+		return studEmailId;
 	}
 
-	public void setStud_email_id(String stud_email_id) {
-		this.stud_email_id = stud_email_id;
+	public void setStudEmailId(String studEmailId) {
+		this.studEmailId = studEmailId;
 	}
 
-	public String getStud_pwd() {
-		return stud_pwd;
+	public String getStudPwd() {
+		return studPwd;
 	}
 
-	public void setStud_pwd(String stud_pwd) {
-		this.stud_pwd = stud_pwd;
+	public void setStudPwd(String studPwd) {
+		this.studPwd = studPwd;
 	}
 
-	public String getState_of_domicile() {
-		return state_of_domicile;
+	public String getStateOfDomicile() {
+		return stateOfDomicile;
 	}
 
-	public void setState_of_domicile(String state_of_domicile) {
-		this.state_of_domicile = state_of_domicile;
+	public void setStateOfDomicile(String stateOfDomicile) {
+		this.stateOfDomicile = stateOfDomicile;
 	}
 
 	public String getDistrict() {
@@ -129,36 +139,36 @@ public class Student {
 		this.district = district;
 	}
 
-	public String getBank_acc_no() {
-		return bank_acc_no;
+	public String getBankAccNo() {
+		return bankAccNo;
 	}
 
-	public void setBank_acc_no(String bank_acc_no) {
-		this.bank_acc_no = bank_acc_no;
+	public void setBankAccNo(String bankAccNo) {
+		this.bankAccNo = bankAccNo;
 	}
 
-	public String getBank_ifsc() {
-		return bank_ifsc;
+	public String getBankIfsc() {
+		return bankIfsc;
 	}
 
-	public void setBank_ifsc(String bank_ifsc) {
-		this.bank_ifsc = bank_ifsc;
+	public void setBankIfsc(String bankIfsc) {
+		this.bankIfsc = bankIfsc;
 	}
 
-	public Long getInst_code() {
-		return inst_code;
+	public Long getInstCode() {
+		return instCode;
 	}
 
-	public void setInst_code(Long inst_code) {
-		this.inst_code = inst_code;
+	public void setInstCode(Long instCode) {
+		this.instCode = instCode;
 	}
 
 	@Override
 	public String toString() {
-		return "Student [stud_id=" + stud_id + ", stud_name=" + stud_name + ", dob=" + dob + ", gender=" + gender
-				+ ", mob_no=" + mob_no + ", stud_email_id=" + stud_email_id + ", stud_pwd=" + stud_pwd
-				+ ", state_of_domicile=" + state_of_domicile + ", district=" + district + ", bank_acc_no=" + bank_acc_no
-				+ ", bank_ifsc=" + bank_ifsc + ", inst_code=" + inst_code + "]";
+		return "Student [studId=" + studId + ", studName=" + studName + ", dob=" + dob + ", gender=" + gender
+				+ ", mobNo=" + mobNo + ", studEmailId=" + studEmailId + ", studPwd=" + studPwd + ", stateOfDomicile="
+				+ stateOfDomicile + ", district=" + district + ", bankAccNo=" + bankAccNo + ", bankIfsc=" + bankIfsc
+				+ ", instCode=" + instCode + "]";
 	}
 
 }

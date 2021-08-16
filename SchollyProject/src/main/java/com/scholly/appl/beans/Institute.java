@@ -1,5 +1,6 @@
 package com.scholly.appl.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,131 +10,141 @@ import javax.persistence.Table;
 public class Institute {
 
 	@Id
-	private Long inst_code;
+	@Column(name = "INST_CODE")
+	private Long instCode;
 
-	private String inst_name;
+	@Column(name = "INST_NAME")
+	private String instName;
 
-	private String inst_type;
+	@Column(name = "INST_TYPE")
+	private String instType;
 
-	private String board_name;
+	@Column(name = "board_NAME")
+	private String boardName;
 
-	private String inst_pwd;
+	@Column(name = "INST_PWD")
+	private String instPwd;
 
-	private String proof_of_existence;
+	@Column(name = "PROOF_OF_EXISTENCE")
+	private String proofOfExistence;
 
-	private String inst_state;
+	@Column(name = "INST_STATE")
+	private String instState;
 
-	private String inst_district;
+	@Column(name = "INST_DISTRICT")
+	private String instDistrict;
 
-	private String inst_addr;
+	@Column(name = "INST_ADDR")
+	private String instAddr;
 
-	private String phone_no;
+	@Column(name = "PHONE_NO")
+	private String phoneNo;
 
 	public Institute() {
 		super();
 	}
 
-	public Institute(Long inst_code, String inst_name, String inst_type, String board_name, String inst_pwd,
-			String proof_of_existence, String inst_state, String inst_district, String inst_addr, String phone_no) {
+	public Institute(Long instCode, String instName, String instType, String boardName, String instPwd,
+			String proofOfExistence, String instState, String instDistrict, String instAddr, String phoneNo) {
 		super();
-		this.inst_code = inst_code;
-		this.inst_name = inst_name;
-		this.inst_type = inst_type;
-		this.board_name = board_name;
-		this.inst_pwd = inst_pwd;
-		this.proof_of_existence = proof_of_existence;
-		this.inst_state = inst_state;
-		this.inst_district = inst_district;
-		this.inst_addr = inst_addr;
-		this.phone_no = phone_no;
+		this.instCode = instCode;
+		this.instName = instName;
+		this.instType = instType;
+		this.boardName = boardName;
+		this.instPwd = instPwd;
+		this.proofOfExistence = proofOfExistence;
+		this.instState = instState;
+		this.instDistrict = instDistrict;
+		this.instAddr = instAddr;
+		this.phoneNo = phoneNo;
 	}
 
-	public Long getInst_code() {
-		return inst_code;
+	public Long getInstCode() {
+		return instCode;
 	}
 
-	public void setInst_code(Long inst_code) {
-		this.inst_code = inst_code;
+	public void setInstCode(Long instCode) {
+		this.instCode = instCode;
 	}
 
-	public String getInst_name() {
-		return inst_name;
+	public String getInstName() {
+		return instName;
 	}
 
-	public void setInst_name(String inst_name) {
-		this.inst_name = inst_name;
+	public void setInstName(String instName) {
+		this.instName = instName;
 	}
 
-	public String getInst_type() {
-		return inst_type;
+	public String getInstType() {
+		return instType;
 	}
 
-	public void setInst_type(String inst_type) {
-		this.inst_type = inst_type;
+	public void setInstType(String instType) {
+		this.instType = instType;
 	}
 
-	public String getBoard_name() {
-		return board_name;
+	public String getBoardName() {
+		return boardName;
 	}
 
-	public void setBoard_name(String board_name) {
-		this.board_name = board_name;
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
 	}
 
-	public String getInst_pwd() {
-		return inst_pwd;
+	public String getInstPwd() {
+		return instPwd;
 	}
 
-	public void setInst_pwd(String inst_pwd) {
-		this.inst_pwd = inst_pwd;
+	public void setInstPwd(String instPwd) {
+		this.instPwd = instPwd;
 	}
 
-	public String getProof_of_existence() {
-		return proof_of_existence;
+	public String getProofOfExistence() {
+		return proofOfExistence;
 	}
 
-	public void setProof_of_existence(String proof_of_existence) {
-		this.proof_of_existence = proof_of_existence;
+	public void setProofOfExistence(String proofOfExistence) {
+		this.proofOfExistence = proofOfExistence;
 	}
 
-	public String getInst_state() {
-		return inst_state;
+	public String getInstState() {
+		return instState;
 	}
 
-	public void setInst_state(String inst_state) {
-		this.inst_state = inst_state;
+	public void setInstState(String instState) {
+		this.instState = instState;
 	}
 
-	public String getInst_district() {
-		return inst_district;
+	public String getInstDistrict() {
+		return instDistrict;
 	}
 
-	public void setInst_district(String inst_district) {
-		this.inst_district = inst_district;
+	public void setInstDistrict(String instDistrict) {
+		this.instDistrict = instDistrict;
 	}
 
-	public String getInst_addr() {
-		return inst_addr;
+	public String getInstAddr() {
+		return instAddr;
 	}
 
-	public void setInst_addr(String inst_addr) {
-		this.inst_addr = inst_addr;
+	public void setInstAddr(String instAddr) {
+		this.instAddr = instAddr;
 	}
 
-	public String getPhone_no() {
-		return phone_no;
+	public String getPhoneNo() {
+		return phoneNo;
 	}
 
-	public void setPhone_no(String phone_no) {
-		this.phone_no = phone_no;
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	@Override
 	public String toString() {
-		return "Institute [inst_code=" + inst_code + ", inst_name=" + inst_name + ", inst_type=" + inst_type
-				+ ", board_name=" + board_name + ", inst_pwd=" + inst_pwd + ", proof_of_existence=" + proof_of_existence
-				+ ", inst_state=" + inst_state + ", inst_district=" + inst_district + ", inst_addr=" + inst_addr
-				+ ", phone_no=" + phone_no + "]";
+		return "Institute [instCode=" + instCode + ", instName=" + instName + ", instType=" + instType + ", boardName="
+				+ boardName + ", instPwd=" + instPwd + ", proofOfExistence=" + proofOfExistence + ", instState="
+				+ instState + ", instDistrict=" + instDistrict + ", instAddr=" + instAddr + ", phoneNo=" + phoneNo
+				+ "]";
 	}
 
 }

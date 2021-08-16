@@ -44,9 +44,9 @@ HSC_PERCENTAGE number(5,2),
 CONSTRAINT SCHEME_PK PRIMARY KEY (SCHEME_ID)
 );
 
-insert into SCHEME values (5000, 'Post Matric Scholarship', 'abcd', 10000, 'U', 0,0);
-insert into SCHEME values (5001, 'National Merit Scholarship', 'efg', 20000, 'U', 0, 0);
-insert into SCHEME values (5002, 'Pragati Scholarship', 'higk', 30000, 'F', 0, 0);
+insert into SCHEME values (5000, 'Post Matric Scholarship', 'abcd', 10000, 'U', 55,55);
+insert into SCHEME values (5001, 'National Merit Scholarship', 'efg', 20000, 'U', 75, 75);
+insert into SCHEME values (5002, 'Pragati Scholarship', 'higk', 30000, 'F', 70, 70);
 
 create table FORM(
 FORM_ID int,
@@ -73,7 +73,7 @@ CITY varchar2(30),
 PIN_CODE int,
 ADDRESS varchar2(50),
 FORM_SUBMISSION_YEAR int,
-FORM_STATUS varchar2(20)
+FORM_STATUS varchar2(30) DEFAULT 'Waiting for approval'
 );
 
 alter table Form add constraint FORM_PK PRIMARY KEY (FORM_ID);

@@ -32,13 +32,13 @@ public class StudentController {
 	// http://localhost:8090/student/login-student
 	@PostMapping("/login-student")
 	public Boolean loginStudent(@RequestBody Student student) {
-		return studService.loginStudent(student.getStud_id(), student.getStud_pwd());
+		return studService.loginStudent(student.getStudId(), student.getStudPwd());
 	}
 	
 	@GetMapping("/get-details/{id}")
-	public Student studentDetails(@PathVariable(value="id") Long stud_id) {
-		System.out.println(studService.getStudentDets(stud_id));
-		return studService.getStudentDets(stud_id);
+	public Student studentDetails(@PathVariable(value="id") Long studId) {
+		System.out.println(studService.getStudentDets(studId));
+		return studService.getStudentDets(studId);
 	}
 
 }
