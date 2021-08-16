@@ -91,7 +91,7 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public List<Form> approvedFormStud(Long studId) {
-		String sql = "SELECT f from Form f, Student s, Institute i where f.aadharNo=s.studId and f.aadharNo=" + studId
+		String sql = "SELECT f from Form f, Student s where f.aadharNo=s.studId and f.aadharNo=" + studId
 				+ " and f.formStatus= :approved";
 		TypedQuery<Form> tq = em.createQuery(sql, Form.class);
 		tq.setParameter("approved", approved);
@@ -101,7 +101,7 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public List<Form> declinedFormStud(Long studId) {
-		String sql = "SELECT f from Form f, Student s, Institute i where f.aadharNo=s.studId and f.aadharNo=" + studId
+		String sql = "SELECT f from Form f, Student s where f.aadharNo=s.studId and f.aadharNo=" + studId
 				+ " and f.formStatus= :declined";
 		TypedQuery<Form> tq = em.createQuery(sql, Form.class);
 		tq.setParameter("declined", declined);
@@ -121,8 +121,8 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public List<Form> approvedFormInst(Long instCode) {
-		String sql = "SELECT f from Form f, Student s, Institute i where f.aadharNo=s.studId and s.instCode=i.instCode and i.instCode="
-				+ instCode + " and f.formStatus= :approved";
+		String sql = "SELECT f from Form f, Student s, Institute i where i.instCode="
+				+ instCode + "and f.aadharNo=s.studId and s.instCode=i.instCode and f.formStatus= :approved";
 		TypedQuery<Form> tq = em.createQuery(sql, Form.class);
 		tq.setParameter("approved", approved);
 		List<Form> formList = tq.getResultList();
@@ -131,8 +131,8 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public List<Form> declinedFormInst(Long instCode) {
-		String sql = "SELECT f from Form f, Student s, Institute i where f.aadharNo=s.studId and s.instCode=i.instCode and i.instCode="
-				+ instCode + " and f.formStatus= :declined";
+		String sql = "SELECT f from Form f, Student s, Institute i where i.instCode="
+				+ instCode + "and f.aadharNo=s.studId and s.instCode=i.instCode and f.formStatus= :declined";
 		TypedQuery<Form> tq = em.createQuery(sql, Form.class);
 		tq.setParameter("declined", declined);
 		List<Form> formList = tq.getResultList();

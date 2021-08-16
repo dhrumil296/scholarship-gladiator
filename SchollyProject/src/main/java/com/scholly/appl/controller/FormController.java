@@ -32,10 +32,35 @@ public class FormController {
 		List<Form> detailsList = formService.waitingForAppFormStud(studId);
 		return detailsList;
 	}
-
+	
+	@GetMapping("/approved-app-student/{id}")
+	public List<Form> approvedFormStudent(@PathVariable(value = "id") Long studId) {
+		List<Form> detailsList = formService.approvedFormStud(studId);
+		return detailsList;
+	}
+	
+	@GetMapping("/declined-app-student/{id}")
+	public List<Form> declinedFormStudent(@PathVariable(value = "id") Long studId) {
+		List<Form> detailsList = formService.declinedFormStud(studId);
+		return detailsList;
+	}
+	
+	
 	@GetMapping("/student-forms/{id}")
 	public List<Form> displayInstRelatedForms(@PathVariable(value = "id") Long instCode) {
 		List<Form> detailsList = formService.waitingForAppFormInst(instCode);
+		return detailsList;
+	}
+	
+	@GetMapping("/approved-app-institute/{id}")
+	public List<Form> approvedFormInst(@PathVariable(value = "id") Long instCode) {
+		List<Form> detailsList = formService.approvedFormInst(instCode);
+		return detailsList;
+	}
+	
+	@GetMapping("/declined-app-institute/{id}")
+	public List<Form> declinedFormInst(@PathVariable(value = "id") Long instCode) {
+		List<Form> detailsList = formService.declinedFormInst(instCode);
 		return detailsList;
 	}
 
